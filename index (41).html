@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster CITES - Full Nội Dung 1-9</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --forest: #1a4301;
+            --leaf: #2d6a4f;
+            --mint: #d8f3dc;
+            --gold: #ffb703;
+            /* Màu vàng chủ đạo cho viền */
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: linear-gradient(135deg, #1a4301 0%, #2d6a4f 100%);
+            background-attachment: fixed;
+            padding: 15px;
+            color: #2d3436;
+        }
+        
+        .poster {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        header {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(26, 67, 1, 0.8), rgba(45, 106, 79, 0.8)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+        /* CHỈ THAY ĐỔI TIÊU ĐỀ THÀNH VÀNG BÓNG */
+        
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 8vw, 3.2rem);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fcf6ba 0%, #bf953f 25%, #fcf6ba 50%, #bf953f 75%, #fcf6ba 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 30px 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                padding: 50px 40px;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid var(--gold) !important;
+            box-shadow: 0 10px 20px rgba(255, 183, 3, 0.2);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 183, 3, 0.4);
+            border-color: #ff9f00 !important;
+        }
+        
+        h2 {
+            color: var(--forest);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: '';
+            width: 6px;
+            height: 22px;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+        
+        h3 {
+            color: var(--leaf);
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+            text-align: justify;
+            color: #444;
+        }
+        
+        li::before {
+            content: '🌿';
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        
+        .highlight-box {
+            background: var(--mint);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px dashed var(--leaf);
+            font-weight: bold;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .appendix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        @media (min-width: 480px) {
+            .appendix-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .app-item {
+            padding: 12px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .app-1 {
+            background: #d62828;
+        }
+        
+        .app-2 {
+            background: #f77f00;
+        }
+        
+        .app-3 {
+            background: #2a9d8f;
+        }
+        
+        .conclusion-zone {
+            padding: 40px 15px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .quote-card {
+            background: var(--forest);
+            color: white;
+            padding: 35px 20px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="poster">
+        <header>
+            <h1>CÔNG ƯỚC CITES</h1>
+            <p style="opacity: 0.95; font-size: 1rem; font-weight: 400;">Bảo tồn nguồn sống thiên nhiên</p>
+        </header>
+
+        <div class="content-grid">
+            <section class="card">
+                <h2>1. Bối cảnh ra đời</h2>
+                <ul>
+                    <li><b>Thế kỷ 20:</b> Việc săn bắt, buôn bán quốc tế động vật – thực vật hoang dã tăng mạnh để lấy da, lông, ngà, sừng, dược liệu, thú cảnh…</li>
+                    <li>Nhiều loài có nguy cơ tuyệt chủng (voi, tê giác, hổ, rùa biển, các loài gỗ quý…).</li>
+                    <li>Các quốc gia chưa có cơ chế pháp lý quốc tế thống nhất để kiểm soát buôn bán xuyên biên giới.</li>
+                </ul>
+                <div class="highlight-box">
+                    => Nhu cầu cấp thiết: Phải có một công ước quốc tế để quản lý việc buôn bán các loài hoang dã.
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>2. Quá trình hình thành</h2>
+                <ul>
+                    <li><b>03/3/1973:</b> Công ước CITES được thông qua tại Washington D.C., Hoa Kỳ.</li>
+                    <li><b>Tên đầy đủ:</b> Convention on International Trade in Endangered Species of Wild Fauna and Flora.</li>
+                    <li><b>01/7/1975:</b> Công ước CITES chính thức có hiệu lực sau khi đủ số quốc gia phê chuẩn ban đầu.</li>
+                    <li><b>Ngày 03/3 hằng năm:</b> Được chọn là Ngày Thế giới Động vật Hoang dã (World Wildlife Day).</li>
+                </ul>
+            </section>
+
+            <section class="card full-width">
+                <h2>3. Lịch sử phát triển của CITES</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div>
+                        <h3>a. Mở rộng thành viên</h3>
+                        <ul>
+                            <li>Ban đầu: chỉ có vài chục quốc gia.</li>
+                            <li>Đến nay: hơn 180 quốc gia và vùng lãnh thổ tham gia.</li>
+                            <li><b>Việt Nam:</b> Gia nhập CITES ngày 20/01/1994.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>b. Hoàn thiện quản lý</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 10px;">Công ước chia loài hoang dã thành 3 Phụ lục:</p>
+                        <div class="appendix-grid">
+                            <div class="app-item app-1">Phụ lục I: Nguy cấp - Cấm</div>
+                            <div class="app-item app-2">Phụ lục II: Kiểm soát chặt</div>
+                            <div class="app-item app-3">Phụ lục III: Nước đề nghị</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>c. Tăng cường phối hợp</h3>
+                        <ul>
+                            <li>Phối hợp với INTERPOL, Hải quan các nước, WWF, IUCN…</li>
+                            <li>Đấu tranh chống: Buôn lậu ngà voi, sừng tê giác, ĐVHD và gỗ quý hiếm.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>4. Ý nghĩa lịch sử</h2>
+                <ul>
+                    <li>Là một trong những công ước quốc tế quan trọng nhất về bảo tồn thiên nhiên.</li>
+                    <li>Ngăn chặn tuyệt chủng nhiều loài.</li>
+                    <li>Nâng cao nhận thức bảo vệ đa dạng sinh học.</li>
+                    <li>Thúc đẩy hợp tác môi trường toàn cầu.</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>5. Mục tiêu và nguyên tắc</h2>
+                <h3>Mục tiêu chính:</h3>
+                <ul>
+                    <li>Đảm bảo buôn bán quốc tế không đe dọa sự tồn tại lâu dài của loài trong tự nhiên.</li>
+                </ul>
+                <h3>Nguyên tắc thực hiện:</h3>
+                <ul>
+                    <li>Kiểm soát, không cấm tuyệt đối mọi trường hợp.</li>
+                    <li>Quyết định dựa trên cơ sở khoa học.</li>
+                    <li>Tôn trọng chủ quyền quốc gia.</li>
+                </ul>
+            </section>
+
+            <section class="card full-width">
+                <h2>6. Cơ chế thực thi Công ước CITES</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <ul>
+                        <li>Hệ thống <b>giấy phép CITES</b> bắt buộc cho xuất - nhập khẩu.</li>
+                        <li>Cơ quan quản lý & Cơ quan khoa học quốc gia.</li>
+                        <li>Kiểm soát nghiêm ngặt tại cửa khẩu, hải quan, biên giới.</li>
+                    </ul>
+                    <ul>
+                        <li>Xử lý vi phạm: Tịch thu mẫu vật, phạt hành chính/hình sự.</li>
+                        <li>Ban Thư ký CITES giám sát tuân thủ quốc tế.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>7. Vai trò đối với Việt Nam</h2>
+                <ul>
+                    <li>Cơ sở pháp lý phòng, chống buôn bán ĐVHD trái phép.</li>
+                    <li>Bảo vệ loài quý hiếm: voi, tê giác, hổ, rùa, gỗ trắc, cẩm lai…</li>
+                    <li>Thúc đẩy hoàn thiện pháp luật về đa dạng sinh học.</li>
+                    <li>Mở rộng hợp tác quốc tế trong bảo tồn thiên nhiên.</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>8. Hạn chế và thách thức</h2>
+                <ul>
+                    <li><b>Thực thi:</b> Một số quốc gia thiếu nguồn lực kiểm soát.</li>
+                    <li><b>Buôn lậu:</b> Ngày càng tinh vi, lợi nhuận cực cao.</li>
+                    <li><b>Phạm vi:</b> Chỉ kiểm soát quốc tế, cần săn bắt nội địa quản lý chặt hơn.</li>
+                </ul>
+            </section>
+
+            <section class="card full-width">
+                <h2>9. Vai trò của giới trẻ, học sinh</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <ul>
+                        <li><b>Nâng cao nhận thức:</b> Tìm hiểu, tuyên truyền về CITES.</li>
+                        <li><b>Thay đổi hành vi:</b> Không sử dụng sản phẩm ĐVHD trái phép.</li>
+                    </ul>
+                    <ul>
+                        <li><b>Lan tỏa:</b> Chia sẻ thông tin, tham gia hoạt động cộng đồng.</li>
+                        <li><b>Hành động:</b> Tham gia CLB môi trường, chiến dịch bảo vệ.</li>
+                    </ul>
+                </div>
+                <p style="text-align: center; margin-top: 15px; font-weight: bold; color: var(--forest);">
+                    => Lực lượng quan trọng góp phần thực thi và duy trì CITES trong tương lai.
+                </p>
+            </section>
+        </div>
+
+        <div class="conclusion-zone">
+            <div class="quote-card">
+                “CITES không chỉ là một công ước – mà là cam kết chung của nhân loại để ngăn chặn sự tuyệt chủng của các loài hoang dã.”
+            </div>
+        </div>
+
+        <footer>
+            © Nội dung học tập | Công ước CITES
+        </footer>
+    </div>
+
+</body>
+
+</html>
