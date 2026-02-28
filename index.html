@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poster CITES - Full Nội Dung 1-9</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Poster CITES </title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
          :root {
@@ -12,9 +12,21 @@
             --leaf: #2d6a4f;
             --mint: #d8f3dc;
             --gold: #ffb703;
-            /* Màu vàng chủ đạo cho viền */
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.95);
+            --glow-gold: 0 0 15px rgba(255, 183, 3, 0.8), 0 0 30px rgba(255, 183, 3, 0.4);
+        }
+        /* Hiệu ứng Fade-in toàn trang khi Reload */
+        
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         * {
@@ -27,101 +39,220 @@
             font-family: 'Be Vietnam Pro', sans-serif;
             background: linear-gradient(135deg, #1a4301 0%, #2d6a4f 100%);
             background-attachment: fixed;
-            padding: 15px;
+            padding: 10px;
             color: #2d3436;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            /* Áp dụng hiệu ứng reload */
+            animation: pageFadeIn 1s ease-out forwards;
         }
         
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1614027164847-1b2809eb189b?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            filter: blur(5px);
+            z-index: -2;
+        }
+        /* Loader */
+        
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--forest);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            border: 5px solid var(--mint);
+            border-top: 5px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .loaded #loader {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Poster Container */
+        
         .poster {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             background: var(--glass);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .poster {
+                border-radius: 40px;
+            }
         }
         
         header {
-            padding: 50px 20px;
+            padding: 40px 15px;
             text-align: center;
-            background: linear-gradient(rgba(26, 67, 1, 0.8), rgba(45, 106, 79, 0.8)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80');
+            background: linear-gradient(rgba(26, 67, 1, 0.7), rgba(45, 106, 79, 0.7));
+            position: relative;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            header {
+                padding: 60px 20px;
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            }
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            z-index: -1;
         }
-        /* CHỈ THAY ĐỔI TIÊU ĐỀ THÀNH VÀNG BÓNG */
         
-        header h1 {
+        .glow-up-title {
+            display: block;
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.8rem, 8vw, 3.2rem);
+            font-size: clamp(1.8rem, 8vw, 4.5rem);
             text-transform: uppercase;
-            margin-bottom: 10px;
             background: linear-gradient(to bottom, #fcf6ba 0%, #bf953f 25%, #fcf6ba 50%, #bf953f 75%, #fcf6ba 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
+        
+        .loaded .glow-up-title {
+            opacity: 1;
+            transform: translateY(0);
+            animation: pulse-glow 3s infinite alternate;
+            animation-delay: 1.2s;
+        }
+        
+        @keyframes pulse-glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(255, 183, 3, 0.4));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(255, 183, 3, 0.8));
+            }
+        }
+        /* Grid nội dung */
         
         .content-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
-            padding: 30px 15px;
+            padding: 20px 10px;
         }
         
         @media (min-width: 768px) {
             .content-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-                padding: 50px 40px;
+                gap: 35px;
+                padding: 60px 50px;
             }
             .full-width {
                 grid-column: span 2;
             }
         }
+        /* Card */
         
         .card {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 20px;
-            border: 3px solid var(--gold) !important;
-            box-shadow: 0 10px 20px rgba(255, 183, 3, 0.2);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
+            border: 2px solid var(--gold) !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            word-wrap: break-word;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 183, 3, 0.4);
-            border-color: #ff9f00 !important;
+        .card.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         h2 {
             color: var(--forest);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
+        @media (min-width: 768px) {
+            h2 {
+                font-size: 1.4rem;
+            }
+        }
+        
         h2::before {
             content: '';
             width: 6px;
-            height: 22px;
+            height: 24px;
             background: var(--gold);
-            border-radius: 3px;
+            border-radius: 4px;
+            flex-shrink: 0;
         }
         
         h3 {
             color: var(--leaf);
             font-size: 1.1rem;
-            margin: 15px 0 10px 0;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            margin: 20px 0 15px 0;
+            border-bottom: 2px solid var(--mint);
+            padding-bottom: 8px;
         }
         
         ul {
@@ -129,46 +260,50 @@
         }
         
         li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
             font-size: 0.95rem;
             text-align: justify;
-            color: #444;
+            color: #2d3436;
         }
         
         li::before {
-            content: '🌿';
+            content: '✦';
             position: absolute;
             left: 0;
-            font-size: 0.9rem;
+            color: var(--gold);
+            font-size: 1rem;
         }
         
         .highlight-box {
             background: var(--mint);
             padding: 15px;
-            border-radius: 12px;
+            border-radius: 15px;
             border: 2px dashed var(--leaf);
             font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--forest);
             text-align: center;
-            margin-top: auto;
+            margin-top: 20px;
         }
+        /* Phụ lục grid */
         
         .appendix-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
-        @media (min-width: 480px) {
+        @media (min-width: 400px) {
             .appendix-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
         }
         
         .app-item {
-            padding: 12px;
+            padding: 12px 8px;
             border-radius: 12px;
             color: white;
             font-weight: bold;
@@ -187,170 +322,219 @@
         .app-3 {
             background: #2a9d8f;
         }
+        /* Kết luận */
         
         .conclusion-zone {
             padding: 40px 15px;
-            background: #f8f9fa;
             text-align: center;
+            opacity: 0;
+        }
+        
+        .conclusion-zone.reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: 1s ease;
         }
         
         .quote-card {
             background: var(--forest);
             color: white;
-            padding: 35px 20px;
+            padding: 30px 20px;
             border-radius: 25px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-style: italic;
-            line-height: 1.6;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 850px;
             margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .quote-card {
+                font-size: 1.3rem;
+                padding: 40px 25px;
+            }
         }
         
         footer {
             padding: 20px;
             text-align: center;
-            font-size: 0.8rem;
-            color: #777;
             background: white;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
 
+    <div id="loader">
+        <div class="loader-icon"></div>
+    </div>
+
     <div class="poster">
         <header>
-            <h1>CÔNG ƯỚC CITES</h1>
-            <p style="opacity: 0.95; font-size: 1rem; font-weight: 400;">Bảo tồn nguồn sống thiên nhiên</p>
+            <h1 class="glow-up-title">CÔNG ƯỚC CITES</h1>
+            <p style="opacity: 0.95; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px; margin-top: 15px; line-height: 1.6;">🌍 BẢO TỒN NGUỒN SỐNG THIÊN NHIÊN 🌍</p>
         </header>
 
         <div class="content-grid">
             <section class="card">
-                <h2>1. Bối cảnh ra đời</h2>
+                <h2>1. Bối cảnh ra đời 🕰️</h2>
                 <ul>
-                    <li><b>Thế kỷ 20:</b> Việc săn bắt, buôn bán quốc tế động vật – thực vật hoang dã tăng mạnh để lấy da, lông, ngà, sừng, dược liệu, thú cảnh…</li>
-                    <li>Nhiều loài có nguy cơ tuyệt chủng (voi, tê giác, hổ, rùa biển, các loài gỗ quý…).</li>
-                    <li>Các quốc gia chưa có cơ chế pháp lý quốc tế thống nhất để kiểm soát buôn bán xuyên biên giới.</li>
+                    <li><b>Thế kỷ 20:</b> Việc săn bắt, buôn bán quốc tế động vật – thực vật hoang dã tăng mạnh để lấy <b>da, lông, ngà, sừng, dược liệu, thú cảnh…</b></li>
+                    <li>Nhiều loài có <b>nguy cơ tuyệt chủng</b> cao như voi, tê giác, hổ, rùa biển, các loài gỗ quý…</li>
+                    <li>Các quốc gia thiếu <b>cơ chế pháp lý quốc tế</b> thống nhất để kiểm soát buôn bán xuyên biên giới.</li>
                 </ul>
                 <div class="highlight-box">
-                    => Nhu cầu cấp thiết: Phải có một công ước quốc tế để quản lý việc buôn bán các loài hoang dã.
+                    💡 Nhu cầu cấp thiết: Phải có một công ước quốc tế để quản lý việc buôn bán các loài hoang dã.
                 </div>
             </section>
 
             <section class="card">
-                <h2>2. Quá trình hình thành</h2>
+                <h2>2. Quá trình hình thành 📜</h2>
                 <ul>
-                    <li><b>03/3/1973:</b> Công ước CITES được thông qua tại Washington D.C., Hoa Kỳ.</li>
+                    <li><b>03/3/1973:</b> Công ước CITES được thông qua tại <b>Washington D.C., Hoa Kỳ.</b></li>
                     <li><b>Tên đầy đủ:</b> Convention on International Trade in Endangered Species of Wild Fauna and Flora.</li>
-                    <li><b>01/7/1975:</b> Công ước CITES chính thức có hiệu lực sau khi đủ số quốc gia phê chuẩn ban đầu.</li>
-                    <li><b>Ngày 03/3 hằng năm:</b> Được chọn là Ngày Thế giới Động vật Hoang dã (World Wildlife Day).</li>
+                    <li><b>01/7/1975:</b> Chính thức có hiệu lực sau khi đủ số quốc gia phê chuẩn ban đầu.</li>
+                    <li><b>Ngày 03/3 hằng năm:</b> Được chọn là <b>Ngày Thế giới Động vật Hoang dã</b> (World Wildlife Day).</li>
                 </ul>
             </section>
 
             <section class="card full-width">
-                <h2>3. Lịch sử phát triển của CITES</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                    <div>
-                        <h3>a. Mở rộng thành viên</h3>
-                        <ul>
-                            <li>Ban đầu: chỉ có vài chục quốc gia.</li>
-                            <li>Đến nay: hơn 180 quốc gia và vùng lãnh thổ tham gia.</li>
-                            <li><b>Việt Nam:</b> Gia nhập CITES ngày 20/01/1994.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>b. Hoàn thiện quản lý</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 10px;">Công ước chia loài hoang dã thành 3 Phụ lục:</p>
-                        <div class="appendix-grid">
-                            <div class="app-item app-1">Phụ lục I: Nguy cấp - Cấm</div>
-                            <div class="app-item app-2">Phụ lục II: Kiểm soát chặt</div>
-                            <div class="app-item app-3">Phụ lục III: Nước đề nghị</div>
+                <h2>3. Lịch sử phát triển của CITES 🚀</h2>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                    <style>
+                        @media (min-width: 850px) {
+                            .sub-grid-3 {
+                                display: grid;
+                                grid-template-columns: repeat(3, 1fr);
+                                gap: 25px;
+                            }
+                        }
+                    </style>
+                    <div class="sub-grid-3">
+                        <div>
+                            <h3>a. Mở rộng thành viên 🗺️</h3>
+                            <ul>
+                                <li>Ban đầu: Chỉ có vài chục quốc gia.</li>
+                                <li>Đến nay: Hơn <b>180 quốc gia</b> và vùng lãnh thổ tham gia.</li>
+                                <li><b>Việt Nam:</b> Gia nhập CITES vào ngày <b>20/01/1994.</b></li>
+                            </ul>
                         </div>
-                    </div>
-                    <div>
-                        <h3>c. Tăng cường phối hợp</h3>
-                        <ul>
-                            <li>Phối hợp với INTERPOL, Hải quan các nước, WWF, IUCN…</li>
-                            <li>Đấu tranh chống: Buôn lậu ngà voi, sừng tê giác, ĐVHD và gỗ quý hiếm.</li>
-                        </ul>
+                        <div>
+                            <h3>b. Hoàn thiện quản lý 📋</h3>
+                            <p style="font-size: 0.95rem; margin-bottom: 12px; font-weight: 600;">Phân chia thành 3 Phụ lục nghiêm ngặt:</p>
+                            <div class="appendix-grid">
+                                <div class="app-item app-1">Phụ lục I:<br>Nguy cấp - Cấm</div>
+                                <div class="app-item app-2">Phụ lục II:<br>Kiểm soát chặt</div>
+                                <div class="app-item app-3">Phụ lục III:<br>Nước đề nghị</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>c. Tăng cường phối hợp 🤝</h3>
+                            <ul>
+                                <li>Hợp tác cùng <b>INTERPOL</b>, Hải quan, <b>WWF</b>, IUCN…</li>
+                                <li>Đấu tranh chống buôn lậu: Ngà voi, sừng tê giác, gỗ quý hiếm.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="card">
-                <h2>4. Ý nghĩa lịch sử</h2>
+                <h2>4. Ý nghĩa lịch sử ✨</h2>
                 <ul>
-                    <li>Là một trong những công ước quốc tế quan trọng nhất về bảo tồn thiên nhiên.</li>
-                    <li>Ngăn chặn tuyệt chủng nhiều loài.</li>
-                    <li>Nâng cao nhận thức bảo vệ đa dạng sinh học.</li>
-                    <li>Thúc đẩy hợp tác môi trường toàn cầu.</li>
+                    <li>Là <b>"lá chắn"</b> quan trọng nhất thế giới về bảo tồn thiên nhiên.</li>
+                    <li><b>Ngăn chặn tuyệt chủng</b> cho hàng ngàn loài sinh vật.</li>
+                    <li>Nâng cao nhận thức về <b>đa dạng sinh học</b> toàn cầu.</li>
+                    <li>Thúc đẩy sự <b>đoàn kết môi trường</b> giữa các quốc gia.</li>
                 </ul>
             </section>
 
             <section class="card">
-                <h2>5. Mục tiêu và nguyên tắc</h2>
+                <h2>5. Mục tiêu và nguyên tắc 🎯</h2>
                 <h3>Mục tiêu chính:</h3>
                 <ul>
-                    <li>Đảm bảo buôn bán quốc tế không đe dọa sự tồn tại lâu dài của loài trong tự nhiên.</li>
+                    <li>Đảm bảo buôn bán không đe dọa <b>sự tồn tại lâu dài</b> của các loài trong tự nhiên.</li>
                 </ul>
                 <h3>Nguyên tắc thực hiện:</h3>
                 <ul>
-                    <li>Kiểm soát, không cấm tuyệt đối mọi trường hợp.</li>
-                    <li>Quyết định dựa trên cơ sở khoa học.</li>
-                    <li>Tôn trọng chủ quyền quốc gia.</li>
+                    <li><b>Kiểm soát</b> thông minh, không cấm đoán cực đoan.</li>
+                    <li>Quyết định dựa trên <b>cơ sở khoa học</b> vững chắc.</li>
+                    <li>Tôn trọng <b>chủ quyền</b> từng quốc gia thành viên.</li>
                 </ul>
             </section>
 
             <section class="card full-width">
-                <h2>6. Cơ chế thực thi Công ước CITES</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                    <ul>
-                        <li>Hệ thống <b>giấy phép CITES</b> bắt buộc cho xuất - nhập khẩu.</li>
-                        <li>Cơ quan quản lý & Cơ quan khoa học quốc gia.</li>
-                        <li>Kiểm soát nghiêm ngặt tại cửa khẩu, hải quan, biên giới.</li>
-                    </ul>
-                    <ul>
-                        <li>Xử lý vi phạm: Tịch thu mẫu vật, phạt hành chính/hình sự.</li>
-                        <li>Ban Thư ký CITES giám sát tuân thủ quốc tế.</li>
-                    </ul>
+                <h2>6. Cơ chế thực thi Công ước CITES ⚖️</h2>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 0;">
+                    <style>
+                        @media (min-width: 768px) {
+                            .sub-grid-6 {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 20px;
+                            }
+                        }
+                    </style>
+                    <div class="sub-grid-6">
+                        <ul>
+                            <li>Hệ thống <b>giấy phép CITES</b> bắt buộc cho mọi hoạt động xuất - nhập khẩu.</li>
+                            <li>Thành lập <b>Cơ quan quản lý</b> & <b>Cơ quan khoa học</b> quốc gia chuyên biệt.</li>
+                            <li>Kiểm soát nghiêm ngặt tại các "điểm nóng": Cửa khẩu, hải quan, biên giới.</li>
+                        </ul>
+                        <ul>
+                            <li><b>Xử lý vi phạm:</b> Tịch thu mẫu vật, xử phạt hành chính hoặc truy tố hình sự.</li>
+                            <li>Ban Thư ký CITES đóng vai trò <b>trọng tài giám sát</b> quốc tế.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section class="card">
-                <h2>7. Vai trò đối với Việt Nam</h2>
+                <h2>7. Vai trò đối với Việt Nam 🇻🇳</h2>
                 <ul>
-                    <li>Cơ sở pháp lý phòng, chống buôn bán ĐVHD trái phép.</li>
-                    <li>Bảo vệ loài quý hiếm: voi, tê giác, hổ, rùa, gỗ trắc, cẩm lai…</li>
-                    <li>Thúc đẩy hoàn thiện pháp luật về đa dạng sinh học.</li>
-                    <li>Mở rộng hợp tác quốc tế trong bảo tồn thiên nhiên.</li>
+                    <li>Cung cấp <b>cơ sở pháp lý</b> mạnh mẽ để chống tội phạm ĐVHD.</li>
+                    <li>Bảo vệ báu vật quốc gia: <b>Voi, tê giác, hổ, rùa, gỗ trắc, cẩm lai…</b></li>
+                    <li>Thúc đẩy hoàn thiện hệ thống <b>Luật pháp Việt Nam</b> về môi trường.</li>
                 </ul>
             </section>
 
             <section class="card">
-                <h2>8. Hạn chế và thách thức</h2>
+                <h2>8. Hạn chế và thách thức ⚠️</h2>
                 <ul>
-                    <li><b>Thực thi:</b> Một số quốc gia thiếu nguồn lực kiểm soát.</li>
-                    <li><b>Buôn lậu:</b> Ngày càng tinh vi, lợi nhuận cực cao.</li>
-                    <li><b>Phạm vi:</b> Chỉ kiểm soát quốc tế, cần săn bắt nội địa quản lý chặt hơn.</li>
+                    <li><b>Thực thi:</b> Một số khu vực còn thiếu nguồn lực và công nghệ kiểm soát.</li>
+                    <li><b>Buôn lậu tinh vi:</b> Lợi nhuận cực cao khiến tội phạm ngày càng liều lĩnh.</li>
+                    <li><b>Nhu cầu nội địa:</b> Cần quản lý chặt chẽ hơn việc tiêu thụ trong nước.</li>
                 </ul>
             </section>
 
             <section class="card full-width">
-                <h2>9. Vai trò của giới trẻ, học sinh</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                    <ul>
-                        <li><b>Nâng cao nhận thức:</b> Tìm hiểu, tuyên truyền về CITES.</li>
-                        <li><b>Thay đổi hành vi:</b> Không sử dụng sản phẩm ĐVHD trái phép.</li>
-                    </ul>
-                    <ul>
-                        <li><b>Lan tỏa:</b> Chia sẻ thông tin, tham gia hoạt động cộng đồng.</li>
-                        <li><b>Hành động:</b> Tham gia CLB môi trường, chiến dịch bảo vệ.</li>
-                    </ul>
+                <h2>9. Vai trò của giới trẻ & Học sinh 🎓</h2>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 0;">
+                    <style>
+                        @media (min-width: 768px) {
+                            .sub-grid-9 {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 25px;
+                            }
+                        }
+                    </style>
+                    <div class="sub-grid-9">
+                        <ul>
+                            <li><b>Nâng cao nhận thức:</b> Chủ động tìm hiểu và lan tỏa thông tin về CITES.</li>
+                            <li><b>Thay đổi hành vi:</b> Nói <b>KHÔNG</b> với sản phẩm từ động vật hoang dã.</li>
+                        </ul>
+                        <ul>
+                            <li><b>Hành động:</b> Tham gia các câu lạc bộ, chiến dịch bảo vệ môi trường.</li>
+                            <li><b>Lan tỏa:</b> Sử dụng mạng xã hội để bảo vệ những loài không có tiếng nói.</li>
+                        </ul>
+                    </div>
                 </div>
-                <p style="text-align: center; margin-top: 15px; font-weight: bold; color: var(--forest);">
-                    => Lực lượng quan trọng góp phần thực thi và duy trì CITES trong tương lai.
-                </p>
+                <div class="highlight-box" style="background: var(--leaf); color: white; border-style: solid;">
+                    🌟 Lực lượng quan trọng góp phần thực thi và duy trì CITES trong tương lai!
+                </div>
             </section>
         </div>
 
@@ -361,11 +545,33 @@
         </div>
 
         <footer>
-            © Nội dung học tập | Công ước CITES
+            🌿 CÔNG ƯỚC CITES 🌿
         </footer>
     </div>
 
-</body>
+    <script>
+        // Xử lý khi trang được load xong
+        window.addEventListener('load', () => {
+            // Tắt Loader
+            document.body.classList.add('loaded');
 
+            // Chạy hiệu ứng hiện các card khi scroll
+            revealOnScroll();
+        });
+
+        // Hàm Reveal on Scroll
+        const revealElements = document.querySelectorAll('.card, .conclusion-zone');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // Kích hoạt khi phần tử cách mép dưới màn hình một khoảng nhỏ
+                if (rect.top < window.innerHeight * 0.92) {
+                    el.classList.add('reveal');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
+</body>
 
 </html>
